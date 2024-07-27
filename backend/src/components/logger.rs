@@ -18,13 +18,16 @@ impl Logger {
     }
 
     fn log(&self, mut info: Log) {
-        info.application_name = env::var("CARGO_PKG_NAME").expect("CARGO_PKG_NAME must be set");
+        info.application_name = env!("CARGO_PKG_NAME").to_string();
+        info.app_version = env!("CARGO_PKG_VERSION").to_string();
+
         info.time = self.get_time();
 
         let message = format!(
-            "[{} - {} - ({} - {} - {}) - {}]: {}",
+            "[{} - {} - (v{}) ({} - {} - {}) - {}]: {}",
             info.log_type,
             info.severity,
+            info.app_version,
             info.application_name,
             info.type_name,
             info.function_name,
@@ -59,6 +62,7 @@ impl Logger {
             message,
             self.type_name.clone(),
             function_name,
+            "".to_string(),
         );
         self.log(info);
     }
@@ -75,6 +79,7 @@ impl Logger {
             message,
             self.type_name.clone(),
             function_name,
+            "".to_string(),
         );
         self.log(info);
     }
@@ -91,6 +96,7 @@ impl Logger {
             message,
             self.type_name.clone(),
             function_name,
+            "".to_string(),
         );
         self.log(info);
     }
@@ -107,6 +113,7 @@ impl Logger {
             message,
             self.type_name.clone(),
             function_name,
+            "".to_string(),
         );
         self.log(info);
     }

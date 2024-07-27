@@ -40,12 +40,12 @@ impl DotEnvReader {
         match read_to_string(&self.file_name) {
             Ok(content) => content,
             Err(e) => {
-                self.logger.error(
+                self.logger.warning(
                     format!("Failed to read file: {}", e).as_str(),
                     "read_file_content",
-                    Severity::High,
+                    Severity::Medium,
                 );
-                panic!("Failed to read .env file");
+                return "".to_string();
             }
         }
     }

@@ -11,6 +11,7 @@ pub struct Log {
     pub message: String,
     pub type_name: String,
     pub function_name: String,
+    pub app_version: String,
 }
 
 impl Log {
@@ -22,6 +23,7 @@ impl Log {
         message: String,
         type_name: String,
         function_name: String,
+        version: String,
     ) -> Self {
         Self {
             application_name,
@@ -31,6 +33,7 @@ impl Log {
             message,
             type_name,
             function_name,
+            app_version: version,
         }
     }
 }
