@@ -16,9 +16,6 @@ FROM debian:latest
 # Copy the executable from the "build" stage.
 COPY --from=builder /usr/local/cargo/bin/server /usr/local/bin/server
 
-# Add .env to root
-COPY .env .
-
 EXPOSE 8080
 
 CMD ["server"]
