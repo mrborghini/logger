@@ -1,0 +1,9 @@
+[package]
+name = "logger-backend"
+version = "0.1.1"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"
+serde = { version = "1.0", features = ["derive"] }
+chrono = "0.4"
