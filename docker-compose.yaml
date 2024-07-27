@@ -1,14 +1,14 @@
 services:
   logger-backend:
     build: 
-      context: backend
+      context: ./backend
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      - HOST_URL=${HOST_URL}
-      - HOST_PORT=${HOST_PORT}
+      - BACKEND_HOST_URL=0.0.0.0
+      - BACKEND_HOST_PORT=3000
     ports:
-      - ${HOST_PORT}:${HOST_PORT}
+      - 3000:3000
   logger-frontend:
     build:
       context: frontend
@@ -17,4 +17,4 @@ services:
     environment:
       - NODE_ENV=production
     ports:
-      - 80:80
+      - 8080:8080

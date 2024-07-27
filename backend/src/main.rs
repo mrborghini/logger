@@ -26,7 +26,7 @@ async fn main() -> std::io::Result<()> {
 
     let logger = Logger::new("main");
 
-    let address_env = env::var("HOST_URL");
+    let address_env = env::var("BACKEND_HOST_URL");
     let address: String;
 
     match address_env {
@@ -35,7 +35,7 @@ async fn main() -> std::io::Result<()> {
         }
         Err(e) => {
             logger.error(
-                format!("Expected HOST_URL in enviroment: {}", e).as_str(),
+                format!("Expected BACKEND_HOST_URL in enviroment: {}", e).as_str(),
                 "main",
                 Severity::Critical,
             );
@@ -43,7 +43,7 @@ async fn main() -> std::io::Result<()> {
         }
     }
 
-    let port_env = env::var("HOST_PORT");
+    let port_env = env::var("BACKEND_HOST_PORT");
 
     let port: u16;
 
@@ -58,7 +58,7 @@ async fn main() -> std::io::Result<()> {
                 Err(e) => {
                     logger.error(
                         format!(
-                            "Expected HOST_PORT in environment with an int format: {}",
+                            "Expected BACKEND_HOST_PORT in environment with an int format: {}",
                             e
                         )
                         .as_str(),
@@ -71,7 +71,7 @@ async fn main() -> std::io::Result<()> {
         }
         Err(e) => {
             logger.error(
-                format!("Expected HOST_PORT in enviroment: {}", e).as_str(),
+                format!("Expected BACKEND_HOST_PORT in enviroment: {}", e).as_str(),
                 "main",
                 Severity::Critical,
             );
