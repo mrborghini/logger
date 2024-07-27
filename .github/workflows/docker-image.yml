@@ -7,14 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker images
+
+    - name: Build the frontend Docker image
       run: |
-        docker build . --file frontend/Dockerfile --tag logger-frontend:$(date +%s)
-        docker build . --file backend/Dockerfile --tag logger-backend:$(date +%s)
+        cd frontend
+        docker build . --file Dockerfile --tag logger-frontend:$(date +%s)
+
+    - name: Build the backend Docker image
+      run: |
+        cd ../backend
+        docker build . --file Dockerfile --tag logger-backend:$(date +%s)
