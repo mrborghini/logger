@@ -4,10 +4,16 @@ use std::{env, num::ParseIntError};
 
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 use components::{types::Severity, DotEnvReader, Logger};
+use serde::{Deserialize, Serialize};
+
+#[derive(Deserialize, Serialize)]
+struct JsonResponse {
+    pub message: String,
+}
 
 #[get("/")]
 async fn hello() -> impl Responder {
-    HttpResponse::Ok().json("Hello, World!")
+    HttpResponse::Ok().json(JsonResponse { message: "Hello, World!".to_string() })
 }
 
 #[post("/echo")]

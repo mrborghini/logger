@@ -45,7 +45,7 @@ impl DotEnvReader {
                     "read_file_content",
                     Severity::Medium,
                 );
-                return "".to_string();
+                "".to_string()
             }
         }
     }
