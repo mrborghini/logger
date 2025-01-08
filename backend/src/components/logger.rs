@@ -37,13 +37,10 @@ impl Logger {
 
         match info.log_type {
             LogType::Info => println!("{}{}{}", Colors::ok_blue(), message, Colors::normal()),
-            LogType::Debug => match env::var("LOGGER_DEBUG") {
-                Ok(value) => {
-                    if value.to_lowercase() == "true" {
-                        println!("{}{}{}", Colors::ok_green(), message, Colors::normal());
-                    }
+            LogType::Debug => if let Ok(value) = env::var("LOGGER_DEBUG") {
+                if value.to_lowercase() == "true" {
+                    println!("{}{}{}", Colors::ok_green(), message, Colors::normal());
                 }
-                Err(_) => {}
             },
             LogType::Warning => println!("{}{}{}", Colors::warning(), message, Colors::normal()),
             LogType::Error => println!("{}{}{}", Colors::error(), message, Colors::normal()),
@@ -125,7 +122,7 @@ impl Logger {
             .duration_since(UNIX_EPOCH)
             .expect("Time went backwards");
 
-        return since_the_epoch.as_secs();
+        since_the_epoch.as_secs()
     }
 
     fn format_time(&self, unix_time: u64) -> String {
